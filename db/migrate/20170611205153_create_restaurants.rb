@@ -1,13 +1,12 @@
 class CreateRestaurants < ActiveRecord::Migration[5.1]
   def change
     create_table :restaurants do |t|
-      t.string :name
+      t.string :name, null: false
       t.references :cuisine, null: false, foreign_key: true
-      t.float :rating
-      t.boolean :accepts_10bis
-      t.string :address
-      t.integer :max_delivery_time_minutes
-
+      t.integer :rating, null: false
+      t.boolean :accepts_10bis, null: false
+      t.string :address, null: false
+      t.integer :max_delivery_time_minutes, null: false
       t.timestamps
     end
   end

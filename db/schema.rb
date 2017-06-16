@@ -22,12 +22,12 @@ ActiveRecord::Schema.define(version: 20170611205153) do
   end
 
   create_table "restaurants", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.bigint "cuisine_id", null: false
-    t.float "rating"
-    t.boolean "accepts_10bis"
+    t.integer "rating", default: 0.0
+    t.boolean "accepts_10bis", default: false
     t.string "address"
-    t.integer "max_delivery_time_minutes"
+    t.integer "max_delivery_time_minutes", default: 60
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cuisine_id"], name: "index_restaurants_on_cuisine_id"
