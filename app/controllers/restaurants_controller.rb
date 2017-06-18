@@ -1,6 +1,4 @@
 class RestaurantsController < ApplicationController
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
-
   def index
     @restaurants = Restaurant.all
 
@@ -24,7 +22,9 @@ class RestaurantsController < ApplicationController
   end
 
   def update
-    if @restaurant.save
+    @restaurant = Restaurant.find(params.require(:id))
+
+    if @restaurant.update(restaurant_params)
       render json: @restaurant, status: :ok
     else
       render json: @restaurant.errors, status: :unprocessable_entity
@@ -32,17 +32,14 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy
-    @restaurant.destroy
+    @restaurant = Restaurant.find(params.require(:id))
+    @restaurant.destroy!
 
-    head :no_content
+    head :ok
   end
 
   private
-    def set_restaurant
-      @restaurant = Restaurant.find(params[:id])
-    end
-
     def restaurant_params
-      params.fetch(:restaurant, {}).permit(:name, :cuisine_id, :address, :rating, :accepts_10bis, :max_delivery_time_minutes)
+      params.permit(:name, :cuisine_id, :address, :rating, :accepts_10bis, :max_delivery_time_minutes)
     end
 end
