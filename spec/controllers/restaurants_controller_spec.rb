@@ -56,6 +56,15 @@ RSpec.describe RestaurantsController, type: :controller do
       get :show, params: { id: -1 }
       expect(response).to have_http_status(:not_found)
     end
+
+    it 'should return the average rating for a restaurant' do
+      restaurant = create(:restaurant)
+      reviews = create_list(:restaurant_review, 5, restaurant_id: restaurant.id)
+      get :show, params: { id: restaurant.id }
+
+      ratings = reviews.map(&:rating)
+      expect(json[:rating]).to eq(ratings.sum.to_f / ratings.size)
+    end
   end
 
   describe 'Update' do
@@ -78,7 +87,7 @@ RSpec.describe RestaurantsController, type: :controller do
     end
   end
 
-  describe 'Deletes' do
+  describe 'Delete' do
     it 'should delete an existing restaurant' do
       restaurant = create(:restaurant)
       delete :destroy, params: { id: restaurant.id }

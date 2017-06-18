@@ -1,27 +1,20 @@
 class RestaurantsController < ApplicationController
   def index
-    @restaurants = Restaurant.all
-
-    render json: @restaurants
+    render json: Restaurant.all
   end
 
   def show
-    @restaurant = Restaurant.find(params.require(:id))
-
-    render json: @restaurant
+    render json: Restaurant.find(params.require(:id))
   end
 
   def create
-    @restaurant = Restaurant.new(restaurant_params)
-
-    @restaurant.save!
-    render json: @restaurant, status: :created
+    render json: Restaurant.create!(restaurant_params), status: :created
   end
 
   def update
     @restaurant = Restaurant.find(params.require(:id))
-
     @restaurant.update!(restaurant_params)
+
     render json: @restaurant, status: :ok
   end
 
