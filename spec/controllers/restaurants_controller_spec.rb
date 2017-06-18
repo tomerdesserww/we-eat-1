@@ -27,8 +27,8 @@ RSpec.describe RestaurantsController, type: :controller do
     it 'should fail to create a restaurant with missing cuisine' do
       restaurant = build(:restaurant, cuisine_id: nil)
       post :create, params: parameterize_restaurant(restaurant)
-      expect(response).to have_http_status(:unprocessable_entity)
-      expect(json[:cuisine]).to eq ["must exist"]
+      expect(response).to have_http_status(:bad_request)
+      expect(json[:errors]).to eq ["Cuisine must exist"]
     end
   end
 
@@ -49,11 +49,12 @@ RSpec.describe RestaurantsController, type: :controller do
       restaurant = create(:restaurant)
       get :show, params: { id: restaurant.id }
       expect(response).to have_http_status(:ok)
-      expect(json[:name]).to eq restaurant.name
+      expect(json).to include(serialized_restaurant(restaurant))
     end
 
     it 'should fail to return a non-existing restaurant' do
-      expect { get :show, params: { id: -1 } }.to raise_error ActiveRecord::RecordNotFound
+      get :show, params: { id: -1 }
+      expect(response).to have_http_status(:not_found)
     end
   end
 
@@ -68,11 +69,12 @@ RSpec.describe RestaurantsController, type: :controller do
     it 'should fail to update a restaurant with invalid parameters' do
       restaurant = create(:restaurant)
       put :update, params: { id: restaurant.id, name: nil }
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:bad_request)
     end
 
     it 'should fail to update a non-existing restaurant' do
-      expect { put :update, params: { id: -1, name: 'New Name'} }.to raise_error ActiveRecord::RecordNotFound
+      put :update, params: { id: -1, name: 'New Name'}
+      expect(response).to have_http_status(:not_found)
     end
   end
 
@@ -90,7 +92,8 @@ RSpec.describe RestaurantsController, type: :controller do
     end
 
     it 'should fail to delete a non-existing restaurant' do
-      expect { delete :destroy, params: { id: -1 } }.to raise_error ActiveRecord::RecordNotFound
+      delete :destroy, params: { id: -1 }
+      expect(response).to have_http_status(:not_found)
     end
   end
 end
