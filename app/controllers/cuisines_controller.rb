@@ -1,7 +1,5 @@
 class CuisinesController < ApplicationController
   def index
-    @cuisines = Cuisine.all
-
-    render json: @cuisines
+    render json: Cuisine.all
   end
 end

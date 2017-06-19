@@ -12,15 +12,15 @@ class RestaurantsController < ApplicationController
   end
 
   def update
-    @restaurant = current_restaurant
-    @restaurant.update!(restaurant_params)
+    restaurant = current_restaurant
+    restaurant.update!(restaurant_params)
 
-    render json: @restaurant, status: :ok
+    render json: restaurant, status: :ok
   end
 
   def destroy
-    @restaurant = current_restaurant
-    @restaurant.destroy!
+    restaurant = current_restaurant
+    restaurant.destroy!
 
     head :ok
   end
