@@ -4,5 +4,5 @@ Rails.application.routes.draw do
     resources :reviews, only: [:index, :create]
   end
 
-  get '/', to: 'application#index'
+  get '(*path)', to: 'application#index'
 end
