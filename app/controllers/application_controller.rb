@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   include ErrorConcern
 
   def index
-    render :inline => '', layout: 'application'
+    render inline: '', layout: 'application'
   end
 end
