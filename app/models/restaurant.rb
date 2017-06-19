@@ -18,4 +18,8 @@ class Restaurant < ApplicationRecord
 
   validates :name, :rating, :address, :max_delivery_time_minutes, presence: true
   validates :accepts_10bis, inclusion: { in: [ true, false ] }
+
+  def update_rating
+    update(rating: reviews.average(:rating))
+  end
 end

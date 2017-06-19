@@ -6,6 +6,6 @@ class Restaurant::Review < ApplicationRecord
   validates :reviewer_name, :body, :rating, presence: true
 
   def update_restaurant_rating
-    restaurant.update(rating: restaurant.reviews.average(:rating))
+    restaurant.update_rating
   end
 end
