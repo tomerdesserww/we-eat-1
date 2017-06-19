@@ -4,7 +4,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    render json: Restaurant.find(params.require(:id))
+    render json: current_restaurant
   end
 
   def create
@@ -12,20 +12,24 @@ class RestaurantsController < ApplicationController
   end
 
   def update
-    @restaurant = Restaurant.find(params.require(:id))
+    @restaurant = current_restaurant
     @restaurant.update!(restaurant_params)
 
     render json: @restaurant, status: :ok
   end
 
   def destroy
-    @restaurant = Restaurant.find(params.require(:id))
+    @restaurant = current_restaurant
     @restaurant.destroy!
 
     head :ok
   end
 
   private
+
+  def current_restaurant
+    Restaurant.find(params.require(:id))
+  end
 
   def restaurant_params
     params.permit(:name, :cuisine_id, :address, :rating, :accepts_10bis, :max_delivery_time_minutes)
