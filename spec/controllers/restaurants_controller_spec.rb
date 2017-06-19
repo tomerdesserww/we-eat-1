@@ -32,7 +32,7 @@ RSpec.describe RestaurantsController, type: :controller do
     end
   end
 
-  describe 'Fetch' do
+  describe 'Index' do
     it 'should return all existing restaurants' do
       restaurants = create_list(:restaurant, 1)
       get :index
@@ -44,7 +44,9 @@ RSpec.describe RestaurantsController, type: :controller do
       get :index
       expect(json).to eq([])
     end
+  end
 
+  describe 'Show' do
     it 'should return an existing restaurant' do
       restaurant = create(:restaurant)
       get :show, params: { id: restaurant.id }
