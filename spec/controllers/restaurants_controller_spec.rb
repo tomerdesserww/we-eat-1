@@ -34,7 +34,7 @@ RSpec.describe RestaurantsController, type: :controller do
 
   describe 'Index' do
     it 'should return all existing restaurants' do
-      restaurants = create_list(:restaurant, 1)
+      restaurants = create_list(:restaurant, [*1..5].sample)
       get :index
       serialized_restaurants = restaurants.map{ |r| serialized_restaurant(r) }
       expect(json).to match_array(serialized_restaurants)
