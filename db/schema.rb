@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20170618115948) do
   create_table "restaurants", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "cuisine_id", null: false
-    t.integer "rating", default: 0
+    t.float "rating", default: 0
     t.boolean "accepts_10bis", default: false
     t.string "address"
     t.integer "max_delivery_time_minutes", default: 60
