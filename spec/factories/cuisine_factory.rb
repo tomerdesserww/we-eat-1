@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :cuisine do
-    name 'Italian'
+    name { %w(Italian Israeli French American).sample }
   end
 end

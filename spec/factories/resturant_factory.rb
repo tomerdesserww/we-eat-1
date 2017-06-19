@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :restaurant do
-    name { ['Hakosem', 'Moses', 'River', 'Ha\'Achim', 'Giraffe'].sample }
+    name { %w(Hakosem Moses River Ha\'Achim Giraffe).sample }
     cuisine
     rating 0
     address { FFaker::Address.street_address }
