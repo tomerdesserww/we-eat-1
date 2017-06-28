@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20170618115948) do
 
   create_table "cuisines", force: :cascade do |t|
     t.string "name"
+    t.string "symbol"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,12 +35,14 @@ ActiveRecord::Schema.define(version: 20170618115948) do
   create_table "restaurants", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "cuisine_id", null: false
-    t.float "rating", default: 0
-    t.boolean "accepts_10bis", default: false
-    t.string "address"
-    t.integer "max_delivery_time_minutes", default: 60
+    t.float "rating", null: false
+    t.boolean "accepts_10bis", null: false
+    t.string "address", null: false
+    t.integer "max_delivery_time_minutes", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "lat"
+    t.float "lng"
     t.index ["cuisine_id"], name: "index_restaurants_on_cuisine_id"
   end
 

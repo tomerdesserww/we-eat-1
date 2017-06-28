@@ -7,6 +7,8 @@ class CreateRestaurants < ActiveRecord::Migration[5.1]
       t.boolean :accepts_10bis, null: false
       t.string :address, null: false
       t.integer :max_delivery_time_minutes, null: false
+      t.float :lat, null: false
+      t.float :lng, null: false
       t.timestamps
     end
   end

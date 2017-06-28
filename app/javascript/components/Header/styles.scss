@@ -1,0 +1,84 @@
+.header {
+  background: url("images/pizza_cover.png") -1px 251px;
+  background-size: cover;
+  color: white;
+  text-align: center;
+
+  .addButton {
+    position: absolute;
+    display: block;
+    right: 20px;
+    top: 20px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    background: url('./icons/AddButton.svg') no-repeat;
+  }
+
+  .title {
+    margin-top: 50px;
+    font-size: 54px;
+    font-weight: 300;
+    text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
+  }
+
+  .subtitle {
+    font-size: 20px;
+    font-weight: 300;
+    text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
+  }
+
+  .searchbar {
+    display: inline-block;
+    position: relative;
+    padding: 5px 10px 5px 25px;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 3px;
+
+    .icon {
+      position: absolute;
+      left: 13px;
+      top: 15px;
+      width: 17px;
+      height: 17px;
+      display: block;
+      background: url('./icons/SearchIcon.svg') no-repeat;
+    }
+
+    .form-control {
+      border-width: 0 !important;
+      font-weight: 100;
+      font-size: 16px;
+      width: 430px;
+
+      &::placeholder {
+        color: #C2C2C2;
+      }
+    }
+
+    ul {
+      width: 466px;
+      position: absolute;
+      left: -26px;
+      top: 40px;
+    }
+
+    li {
+      padding: 5px 5px 5px 10px;
+    }
+  }
+
+  .filters {
+    margin-top: 30px;
+    text-align: left;
+    padding: 10px 20px;
+    background-color: #F54343;
+    font-size: 14px;
+
+    .filter {
+      margin-top: 2px;
+      font-size: 14px;
+    }
+  }
+}

@@ -22,6 +22,7 @@
   "plugins": ["react", "import"],
 
   "parserOptions": {
+    "sourceType": "module",
     "ecmaFeatures": {
       "arrowFunctions": true,
       "binaryLiterals": true,
@@ -56,7 +57,7 @@
     //
     "comma-dangle": [2, "always-multiline"], // disallow or enforce trailing commas
     "no-cond-assign": 2, // disallow assignment in conditional expressions
-    "no-console": 1, // disallow use of console (off by default in the node environment)
+    "no-console": 0, // disallow use of console (off by default in the node environment)
     "no-constant-condition": 2, // disallow use of constant expressions in conditions
     "no-control-regex": 2, // disallow control characters in regular expressions
     "no-debugger": 2, // disallow use of debugger
@@ -259,7 +260,6 @@
     "react/require-default-props": 0, // off
     "react/self-closing-comp": 2, // Prevent extra closing tags for components without children
     "react/sort-comp": 1, // component native methods should be ordered
-    "react/wrap-multilines": 2, // Prevent missing parentheses around multilines JSX
 
     // Imports
     //
